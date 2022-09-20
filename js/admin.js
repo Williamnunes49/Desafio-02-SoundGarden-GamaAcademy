@@ -10,7 +10,7 @@ async function adminEventos() {
     try{
         const endPoint = await fetch(`${BASE_URL}/events`);
         const newEndPoint = await endPoint.json();
-        console.log(newEndPoint);
+    
 
         newEndPoint.forEach((evento, index)=> 
         {   
