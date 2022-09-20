@@ -10,14 +10,14 @@ async function adminEventos() {
     try{
         const endPoint = await fetch(`${BASE_URL}/events`);
         const newEndPoint = await endPoint.json();
-    
 
         newEndPoint.forEach((evento, index)=> 
         {   
+            const data = new Date (evento.scheduled);
             const cardEvento = `
             <tr>
                 <th scope="row">${index+1}</th>
-                <td>${evento.scheduled}</td>
+                <td>${data.toLocaleDateString('pt-br')}</td>
                 <td>${evento.name}</td>
                 <td>${evento.attractions}</td>
                 <td>

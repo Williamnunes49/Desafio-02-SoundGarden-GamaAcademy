@@ -24,6 +24,7 @@ const btnExcluir = document.querySelector(".btn-danger")
 
 var nomeEventoExcluido = ""
 
+
 async function excluirEventosPagina () {
     try{
         const endPoint = await fetch(`${BASE_URL}/events`);
@@ -33,11 +34,12 @@ async function excluirEventosPagina () {
 
         newEndPoint.forEach((evento, index)=>{
             if (evento._id == urlId){
+                const data = new Date (evento.scheduled);
                 nomeEvento.setAttribute("value", `${evento.name}`);
                 bannerEvento.setAttribute("value", `${evento.poster}`);
                 atracoesEvento.setAttribute("value", `${evento.attractions}`);
                 descricaoEvento.innerHTML=`${evento.description}`;
-                dataEvento.setAttribute("value", `${evento.scheduled}`);
+                dataEvento.setAttribute("value", `${data.toLocaleDateString()}`);
                 lotacaoEvento.setAttribute("value", `${evento.number_tickets}`);
                 console.log(index)
 
