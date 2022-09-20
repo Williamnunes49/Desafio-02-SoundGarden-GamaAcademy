@@ -2,8 +2,6 @@ const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
 
 const tbody = document.querySelector("tbody")
 
-//btnExcluir.forEach((botao) => botao.setAttribute("href", "excluir-evento.html"));
-//tbody.style.display = "none";
 tbody.innerHTML = ``
 
 async function adminEventos() {
@@ -14,6 +12,7 @@ async function adminEventos() {
         newEndPoint.forEach((evento, index)=> 
         {   
             const data = new Date (evento.scheduled);
+            
             const cardEvento = `
             <tr>
                 <th scope="row">${index+1}</th>
