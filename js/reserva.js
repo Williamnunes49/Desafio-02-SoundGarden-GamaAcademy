@@ -17,7 +17,7 @@ async function reservasEvent() {
 
             <tbody>
             <tr>
-            <th scope="row">${indice}</th>
+            <th scope="row">${indice+1}</th>
             <td>${evento.owner_name}</td>
             <td>${evento.owner_email}</td>
             <td>${evento._id}</td>
