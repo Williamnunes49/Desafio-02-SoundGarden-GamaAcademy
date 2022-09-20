@@ -5,18 +5,24 @@ const descricaoEvento = document.querySelector("#descricao");
 const dataEvento = document.querySelector("#data");
 const lotacaoEvento = document.querySelector("#lotacao");
 
-nomeEvento.setAttribute("value", "");
-bannerEvento.setAttribute("value", "");
-atracoesEvento.setAttribute("value", "");
-descricaoEvento.innerHTML="";
-dataEvento.setAttribute("value", "");
-lotacaoEvento.setAttribute("value", "");
+function zerarCampos () {
+    nomeEvento.setAttribute("value", "");
+    bannerEvento.setAttribute("value", "");
+    atracoesEvento.setAttribute("value", "");
+    descricaoEvento.innerHTML="";
+    dataEvento.setAttribute("value", "");
+    lotacaoEvento.setAttribute("value", "");
+}
+
+zerarCampos();
 
 const urlId = (window.location.search).split("?")[1]
 
 const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
 
 const btnExcluir = document.querySelector(".btn-danger")
+
+var nomeEventoExcluido = ""
 
 async function excluirEventosPagina () {
     try{
@@ -34,6 +40,8 @@ async function excluirEventosPagina () {
                 dataEvento.setAttribute("value", `${evento.scheduled}`);
                 lotacaoEvento.setAttribute("value", `${evento.number_tickets}`);
                 console.log(index)
+
+                nomeEventoExcluido = `${evento.name}`;
             }
         })
     } 
@@ -45,15 +53,13 @@ excluirEventosPagina()
 
 async function excluirParaSempre(){
     try{
-        const response = await fetch( `${BASE_URL}/events`,{
+        const response = await fetch( `${BASE_URL}/events/${urlId}`,{
             method: "DELETE",
-            headers: {
-                "X": `${urlId}`,
-            },
         });
-        const novaLista = await response.json();
-        
-        console.log("endpoint clicando:", novaLista)
+        console.log(response.status)
+        console.log('excluiu')
+        alert(`Você excluiu o evento ${nomeEventoExcluido}`)
+        zerarCampos();
     }
     catch(error){
         console.log(error)
@@ -63,4 +69,5 @@ async function excluirParaSempre(){
 btnExcluir.onclick = (event) =>{
     event.preventDefault()
     excluirParaSempre();
+    
 }
