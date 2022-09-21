@@ -35,6 +35,8 @@ async function todosEventos() {
 
     // seleciona o modal criado no eventos.html
     const modal = document.querySelector("#myModal");
+    const modalLobby = document.querySelector('.modal-body') 
+   
     const span = document.querySelector(".close")
     const btnReservas = document.querySelector('.btn-reservas')
     
@@ -42,11 +44,17 @@ async function todosEventos() {
       
       // precisei desse forEach pra selecionar todos os botões todos  
       botao.forEach((elemento) => {
+        divReserva.textContent += `${elemento.attractions}`
 
         // faz aparecer o modal quando clica em 'reservar ingressos'
         elemento.onclick = (event) => {
+         
+            console.log(elemento._id)
           modal.style.display = "block";
           event.preventDefault();
+           
+
+          
         };
       });
 
@@ -58,6 +66,7 @@ async function todosEventos() {
         // AQUI EU TO PEGANDO O BOTÃO FAZER RESERVAS, DENTRO DO MODAL
         btnReservas.onclick = (event) => {
           console.log('clicou no btn reservas')
+          console.log(nome.value)
           event.preventDefault();
         }
     }
