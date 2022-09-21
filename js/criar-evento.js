@@ -6,6 +6,7 @@
   async function criarEventos(){
     try {
         const nomeEvento = document.querySelector("#nome");
+        const bannerEvento = document.querySelector('#banner')
         const atracoesEvento = document.querySelector("#atracoes");
         const descricaoEvento = document.querySelector("#descricao");
         const dataEvento = document.querySelector("#data");
@@ -16,7 +17,7 @@
 
         let evento = {
             name: nomeEvento.value,
-            poster:"url",
+            poster: bannerEvento.value,
             attractions: [atracoesEvento.value], 
             description: descricaoEvento.value,
             scheduled: datacerta,
