@@ -23,7 +23,7 @@ async function todosEventos() {
                     <h4>${evento.attractions}</h4>
                     <p>${evento.description}
                     <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                    <a href="" class="btn btn-primary">reservar ingresso</a>
+                    <a href="${evento._id}" class="btn btn-primary">reservar ingresso</a>
                 </article>
              </div>
             `;
@@ -39,21 +39,27 @@ async function todosEventos() {
    
     const span = document.querySelector(".close")
     const btnReservas = document.querySelector('.btn-reservas')
+
+    const modalEvento = document.querySelector("#modalNomeEvento");
     
     function reservarEvento() {
       
       // precisei desse forEach pra selecionar todos os botões todos  
       botao.forEach((elemento) => {
-        divReserva.textContent += `${elemento.attractions}`
+
+        //console.log(elemento.href)
+        //divReserva.textContent += `${elemento.attractions}`
 
         // faz aparecer o modal quando clica em 'reservar ingressos'
         elemento.onclick = (event) => {
-         
-            console.log(elemento._id)
-          modal.style.display = "block";
           event.preventDefault();
-           
-
+          const idEvento = elemento.pathname.split('/')[1]
+          newEndPoint.forEach((evento)=>{
+            if(evento._id == idEvento){
+              modalEvento.innerHTML = evento.name
+            }
+          })
+          modal.style.display = "block";
           
         };
       });
@@ -66,7 +72,7 @@ async function todosEventos() {
         // AQUI EU TO PEGANDO O BOTÃO FAZER RESERVAS, DENTRO DO MODAL
         btnReservas.onclick = (event) => {
           console.log('clicou no btn reservas')
-          console.log(nome.value)
+          
           event.preventDefault();
         }
     }
