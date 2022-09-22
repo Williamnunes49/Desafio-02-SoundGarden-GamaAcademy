@@ -1,5 +1,5 @@
 const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
-
+console.log('entrou aqui')
 async function reservasEvent() {
     try{
         const endPoint = await fetch(`${BASE_URL}/bookings`);

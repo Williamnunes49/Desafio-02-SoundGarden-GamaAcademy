@@ -49,3 +49,30 @@ footer nav ul{
 footer nav ul li  {
     padding: 10px;
 }
+
+/**************************************/
+
+.modal-header {
+    background-color:#C2185B;
+    color: white;
+}
+.modal-header h2{
+    margin:0;
+}
+
+.modal-content {
+    border:none;
+}
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    width: 70%
+}
+.modal-footer{
+    background-color:#C2185B;
+    color: white;
+}
+.btn-reservas{
+    width: 50%;
+}

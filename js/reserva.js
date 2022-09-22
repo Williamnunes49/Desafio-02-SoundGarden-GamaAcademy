@@ -2,13 +2,12 @@ const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
 const tabela = document.querySelector('.table')
 const tabela02 = document.querySelectorAll('tbody tr')
 
-
-
-
+const urlId = (window.location.search).split("?")[1]
+console.log(urlId)
 
 async function reservasEvent() {
     try{
-        const endPoint = await fetch(`${BASE_URL}/bookings`);
+        const endPoint = await fetch(`${BASE_URL}/bookings/event/${urlId}`);
         const newEndPoint = await endPoint.json();
         console.log(newEndPoint);
 
@@ -28,8 +27,6 @@ async function reservasEvent() {
             tabela.innerHTML += html
 
         })
-
-
     }
     catch(error) {
         console.log(error)
