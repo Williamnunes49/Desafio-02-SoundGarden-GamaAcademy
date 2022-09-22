@@ -12,10 +12,15 @@ const inputEmail = document.querySelector(".input-email-modal");
 const myModal = document.getElementById('meuModal')
 const btnReservar = document.querySelector('.btn-reservas')
 
+const modalNomeEvento = document.querySelector('#modalNomeEvento')
+
 let idEvento = ""
+let nomeEvento = ""
 
 myModal.addEventListener('shown.bs.modal', (elemento) => {
   idEvento = elemento.relatedTarget.pathname.split("/")[1];
+  nomeEvento = elemento.relatedTarget.pathname.split("/")[2].replace(/%20/g, " ");
+  modalNomeEvento.innerHTML = nomeEvento
 })
 btnReservar.onclick=(event)=>{
   event.preventDefault()

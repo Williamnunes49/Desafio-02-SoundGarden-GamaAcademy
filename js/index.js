@@ -1,8 +1,4 @@
 const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
-const nomeEvento = document.querySelectorAll(".evento h2");
-const atracoesEvento = document.querySelector(".evento h4")
-const descricaoEvento = document.querySelector(".evento p")
-const reservarEvento = document.querySelector(".evento btn");
 const div = document.querySelectorAll("article");
 const container = document.querySelectorAll(".container")[1];
 
@@ -14,11 +10,17 @@ const inputEmail = document.querySelector(".input-email-modal");
 const myModal = document.getElementById('meuModal')
 const btnReservar = document.querySelector('.btn-reservas')
 
+const modalNomeEvento = document.querySelector('#modalNomeEvento')
+
 let idEvento = ""
+let nomeEvento = ""
 
 myModal.addEventListener('shown.bs.modal', (elemento) => {
   idEvento = elemento.relatedTarget.pathname.split("/")[1];
+  nomeEvento = elemento.relatedTarget.pathname.split("/")[2].replace(/%20/g, " ");
+  modalNomeEvento.innerHTML = nomeEvento
 })
+
 btnReservar.onclick=(event)=>{
   event.preventDefault()
   reservaEvento(idEvento, inputNome.value, inputEmail.value)
@@ -37,7 +39,7 @@ async function get3Events() {
           <h2>${evento.name}</h2>
           <h4>${evento.attractions}</h4>
           <p>${evento.description}</p>
-          <a href="${evento._id}" class="btn btn-primary" 
+          <a href="${evento._id}/${evento.name}" class="btn btn-primary" 
           data-bs-toggle="modal" data-bs-target="#meuModal">reservar ingresso</a>
         </article>
       </div>
