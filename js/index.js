@@ -9,13 +9,13 @@ function aparecerBanner () {
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active"  data-bs-interval="2000">
-                <img src="../img/1.png" class="d-block w-100" alt="...">
+                <img src="./img/1.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item " data-bs-interval="6000">
-                <img src="../img/2.png" class="d-block w-100" alt="...">
+                <img src="./img/2.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item" data-bs-interval="10000">
-                <img src="../img/3.png" class="d-block w-100" alt="...">
+                <img src="./img/3.png" class="d-block w-100" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -44,14 +44,13 @@ let idEvento = ""
 let nomeEvento = ""
 
 myModal.addEventListener('shown.bs.modal', (elemento) => {
-  idEvento = elemento.relatedTarget.pathname.split("/")[1];
-  nomeEvento = elemento.relatedTarget.pathname.split("/")[1].replace(/%20/g, " ");
+  idEvento = elemento.relatedTarget.pathname.split("/")[2];
+  nomeEvento = elemento.relatedTarget.pathname.split("/")[3].replace(/%20/g, " ");
   modalNomeEvento.innerHTML = nomeEvento
 })
 
 btnReservar.onclick=()=>{
   reservaEvento(idEvento, inputNome.value, inputEmail.value)
-  
 }
 
 async function get3Events() {
