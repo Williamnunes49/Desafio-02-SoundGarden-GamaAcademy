@@ -5,17 +5,18 @@ const container = document.querySelectorAll(".container")[1];
 const banner = document.querySelector(".text-center")
 
 function aparecerBanner () {
+  banner.style.width = "600px";
   banner.innerHTML=`
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active"  data-bs-interval="2000">
-                <img src="./img/1.png" class="d-block w-100" alt="...">
+      <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner ">
+              <div class="carousel-item active" data-bs-interval="3000" >
+                <img src="./img/1.png" class="d-block " alt="...">
               </div>
-              <div class="carousel-item " data-bs-interval="6000">
-                <img src="./img/2.png" class="d-block w-100" alt="...">
+              <div class="carousel-item " data-bs-interval="3000">
+                <img src="./img/2.png" class="d-block " alt="...">
               </div>
-              <div class="carousel-item" data-bs-interval="10000">
-                <img src="./img/3.png" class="d-block w-100" alt="...">
+              <div class="carousel-item" data-bs-interval="3000">
+                <img src="./img/3.png" class="d-block " alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
