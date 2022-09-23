@@ -20,7 +20,7 @@ async function adminEventos() {
                 <td>${evento.name}</td>
                 <td>${evento.attractions}</td>
                 <td>
-                    <a href="reservas.html?${evento._id}" class="btn btn-dark">ver reservas</a>
+                    <a href="reservas.html?${evento._id}?${evento.name}" class="btn btn-dark">ver reservas</a>
                     <a href="editar-evento.html?${evento._id}" class="btn btn-secondary">editar</a>
                     <a href="excluir-evento.html?${evento._id}" class="btn btn-danger">excluir</a>
                 </td>

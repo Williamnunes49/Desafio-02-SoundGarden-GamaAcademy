@@ -2,6 +2,34 @@ const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
 const div = document.querySelectorAll("article");
 const container = document.querySelectorAll(".container")[1];
 
+const banner = document.querySelector(".text-center")
+
+function aparecerBanner () {
+  banner.innerHTML=`
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active"  data-bs-interval="2000">
+                <img src="../img/1.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item " data-bs-interval="6000">
+                <img src="../img/2.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="10000">
+                <img src="../img/3.png" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+      </div>
+  `
+}
+aparecerBanner()
 div.forEach((tag) => {
   tag.remove();
 });
@@ -21,9 +49,9 @@ myModal.addEventListener('shown.bs.modal', (elemento) => {
   modalNomeEvento.innerHTML = nomeEvento
 })
 
-btnReservar.onclick=(event)=>{
-  event.preventDefault()
+btnReservar.onclick=()=>{
   reservaEvento(idEvento, inputNome.value, inputEmail.value)
+  
 }
 
 async function get3Events() {
@@ -60,6 +88,10 @@ async function reservaEvento(idEvento, nome, email) {
     number_tickets: 1,
     event_id: `${idEvento}`,
   };
+  if(!nome || !email){
+    alert('Campos obrigatórios')
+    return
+  }
   try {
     const response = await fetch(`${BASE_URL}/bookings`, {
       method: "POST",
@@ -71,4 +103,5 @@ async function reservaEvento(idEvento, nome, email) {
   } catch (error) {
     console.log(error);
   }
+  alert(`Ingresso para o evento ${nomeEvento} reservado!`)
 }

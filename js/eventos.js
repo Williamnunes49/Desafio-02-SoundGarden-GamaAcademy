@@ -22,9 +22,9 @@ myModal.addEventListener('shown.bs.modal', (elemento) => {
   nomeEvento = elemento.relatedTarget.pathname.split("/")[2].replace(/%20/g, " ");
   modalNomeEvento.innerHTML = nomeEvento
 })
-btnReservar.onclick=(event)=>{
-  event.preventDefault()
+btnReservar.onclick=()=>{
   reservaEvento(idEvento, inputNome.value, inputEmail.value)
+  
 }
 
 async function todosEventos() {
@@ -41,7 +41,7 @@ async function todosEventos() {
                       <h2>${evento.name}</h2>
                       <h4>${evento.attractions}</h4>
                       <p>${evento.description}
-                      <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                      <br> </p>
                       <a href="${evento._id}/${evento.name}" class="btn btn-primary" 
                       data-bs-toggle="modal" data-bs-target="#meuModal">fazer reserva</a>
                   </article>
@@ -63,6 +63,10 @@ async function reservaEvento(idEvento, nome, email) {
     number_tickets: 1,
     event_id: `${idEvento}`,
   };
+  if(!nome || !email){
+    alert('Campos obrigatórios')
+    return
+  }
   try {
     const response = await fetch(`${BASE_URL}/bookings`, {
       method: "POST",
@@ -70,8 +74,10 @@ async function reservaEvento(idEvento, nome, email) {
       body: JSON.stringify(cadastro),
     });
     const dados = await response.json();
+    
     console.log(dados);
   } catch (error) {
     console.log(error);
   }
+  alert(`Ingresso para o evento ${nomeEvento} reservado!`)
 }
