@@ -18,13 +18,13 @@ let idEvento = ""
 let nomeEvento = ""
 
 myModal.addEventListener('shown.bs.modal', (elemento) => {
+  console.log('entrou no myModal')
   idEvento = elemento.relatedTarget.pathname.split("/")[1];
   nomeEvento = elemento.relatedTarget.pathname.split("/")[2].replace(/%20/g, " ");
   modalNomeEvento.innerHTML = nomeEvento
 })
 btnReservar.onclick=()=>{
   reservaEvento(idEvento, inputNome.value, inputEmail.value)
-  
 }
 
 async function todosEventos() {
@@ -57,6 +57,7 @@ async function todosEventos() {
 todosEventos()
 
 async function reservaEvento(idEvento, nome, email) {
+  console.log('entrou em botao reserva')
   let cadastro = {
     owner_name: `${nome}`,
     owner_email: `${email}`,
