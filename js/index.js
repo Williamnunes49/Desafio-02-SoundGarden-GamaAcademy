@@ -2,6 +2,10 @@ const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
 const div = document.querySelectorAll("article");
 const container = document.querySelectorAll(".container")[1];
 
+div.forEach((tag) => {
+  tag.remove();
+});
+
 const banner = document.querySelector(".text-center")
 
 function aparecerBanner () {
@@ -31,36 +35,15 @@ function aparecerBanner () {
   `
 }
 aparecerBanner()
-div.forEach((tag) => {
-  tag.remove();
-});
-const inputNome = document.querySelector(".input-nome-modal");
-const inputEmail = document.querySelector(".input-email-modal");
-const myModal = document.getElementById('meuModal')
-const btnReservar = document.querySelector('.btn-reservas')
 
-const modalNomeEvento = document.querySelector('#modalNomeEvento')
-
-let idEvento = ""
-let nomeEvento = ""
-
-myModal.addEventListener('shown.bs.modal', (elemento) => {
-  idEvento = elemento.relatedTarget.pathname.split("/")[2];
-  nomeEvento = elemento.relatedTarget.pathname.split("/")[3].replace(/%20/g, " ");
-  modalNomeEvento.innerHTML = nomeEvento
-})
-
-btnReservar.onclick=()=>{
-  reservaEvento(idEvento, inputNome.value, inputEmail.value)
-}
-
-async function get3Events() {
+async function get3Events() { // apresenta os 3 últimos eventos criados
   try {
     const endPoint = await fetch(`${BASE_URL}/events`);
     const newEndPoint = await endPoint.json();
-
+    
     for (let i = 0; i < 3; i++) {
       const evento = newEndPoint[i]
+      console.log(i)
       const html = `
       <div class="container d-flex justify-content-center align-items-center flex-wrap">
         <article class="evento card p-5 m-3">
@@ -80,6 +63,27 @@ async function get3Events() {
   }
 }
 get3Events();
+
+const inputNome = document.querySelector(".input-nome-modal");
+const inputEmail = document.querySelector(".input-email-modal");
+const myModal = document.getElementById('meuModal')
+const btnReservar = document.querySelector('.btn-reservas')
+
+const modalNomeEvento = document.querySelector('#modalNomeEvento')
+
+let idEvento = ""
+let nomeEvento = ""
+
+myModal.addEventListener('shown.bs.modal', (elemento) => {
+  idEvento = elemento.relatedTarget.pathname.split("/")[2];
+  nomeEvento = elemento.relatedTarget.pathname.split("/")[3].replace(/%20/g, " ");
+  modalNomeEvento.innerHTML = nomeEvento
+})
+
+btnReservar.onclick=(event)=>{
+  event.preventDefault ();
+  reservaEvento(idEvento, inputNome.value, inputEmail.value)
+}
 
 async function reservaEvento(idEvento, nome, email) {
   let cadastro = {
@@ -104,4 +108,5 @@ async function reservaEvento(idEvento, nome, email) {
     console.log(error);
   }
   alert(`Ingresso para o evento ${nomeEvento} reservado!`)
+  window.location.assign("index.html")
 }

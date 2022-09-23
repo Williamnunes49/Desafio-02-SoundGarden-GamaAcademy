@@ -7,34 +7,13 @@ div.forEach((tag) => {
   tag.remove();
 });
 
-const inputNome = document.querySelector(".input-nome-modal");
-const inputEmail = document.querySelector(".input-email-modal");
-const myModal = document.getElementById('meuModal')
-const btnReservar = document.querySelector('.btn-reservas')
-
-const modalNomeEvento = document.querySelector('#modalNomeEvento')
-
-let idEvento = ""
-let nomeEvento = ""
-
-myModal.addEventListener('shown.bs.modal', (elemento) => {
-  console.log('entrou no myModal')
-  idEvento = elemento.relatedTarget.pathname.split("/")[1];
-  nomeEvento = elemento.relatedTarget.pathname.split("/")[2].replace(/%20/g, " ");
-  modalNomeEvento.innerHTML = nomeEvento
-})
-btnReservar.onclick=()=>{
-  reservaEvento(idEvento, inputNome.value, inputEmail.value)
-}
-
 async function todosEventos() {
+  console.log('oie')
     try {
       const endPoint = await fetch(`${BASE_URL}/events`);
       const newEndPoint = await endPoint.json();
-      console.log(newEndPoint);
 
-      newEndPoint.forEach((evento) => {
-       
+      newEndPoint.forEach((evento) => { 
         const html2 = `
               <div style="display: inline-grid; grid-template-columns: 200px 200px;">
                   <article style="text-align:center;"  class="evento card p-5 m-3">
@@ -56,6 +35,26 @@ async function todosEventos() {
 }
 todosEventos()
 
+const inputNome = document.querySelector(".input-nome-modal");
+const inputEmail = document.querySelector(".input-email-modal");
+const myModal = document.getElementById('meuModal')
+const btnReservar = document.querySelector('.btn-reservas')
+
+const modalNomeEvento = document.querySelector('#modalNomeEvento')
+
+let idEvento = ""
+let nomeEvento = ""
+
+myModal.addEventListener('shown.bs.modal', (elemento) => {
+  idEvento = elemento.relatedTarget.pathname.split("/")[2];
+  nomeEvento = elemento.relatedTarget.pathname.split("/")[3].replace(/%20/g, " ");
+  modalNomeEvento.innerHTML = nomeEvento
+})
+btnReservar.onclick=(event)=>{
+  event.preventDefault ();
+  reservaEvento(idEvento, inputNome.value, inputEmail.value)
+}
+
 async function reservaEvento(idEvento, nome, email) {
   console.log('entrou em botao reserva')
   let cadastro = {
@@ -75,10 +74,11 @@ async function reservaEvento(idEvento, nome, email) {
       body: JSON.stringify(cadastro),
     });
     const dados = await response.json();
-    
     console.log(dados);
   } catch (error) {
     console.log(error);
+    
   }
   alert(`Ingresso para o evento ${nomeEvento} reservado!`)
+  window.location.assign("eventos.html")
 }
