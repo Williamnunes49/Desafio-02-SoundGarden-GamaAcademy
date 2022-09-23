@@ -7,10 +7,16 @@ const nomeEvento = window.location.search.split("?")[2].replace(/%20/g, " ");
 
 eventoReservas.innerHTML += nomeEvento;
 
+const bdExample = document.querySelector(".bd-example");
+
 async function reservasEvent() {
   try {
     const endPoint = await fetch(`${BASE_URL}/bookings/event/${urlId}`);
     const newEndPoint = await endPoint.json();
+
+    if (newEndPoint.length == 0) {
+      bdExample.innerHTML = "<h4>Não há reservas para este evento</h4>";
+    }
 
     newEndPoint.forEach((evento, indice) => {
       const html = `
