@@ -45,7 +45,7 @@ let nomeEvento = ""
 
 myModal.addEventListener('shown.bs.modal', (elemento) => {
   idEvento = elemento.relatedTarget.pathname.split("/")[1];
-  nomeEvento = elemento.relatedTarget.pathname.split("/")[2].replace(/%20/g, " ");
+  nomeEvento = elemento.relatedTarget.pathname.split("/")[1].replace(/%20/g, " ");
   modalNomeEvento.innerHTML = nomeEvento
 })
 
