@@ -9,7 +9,10 @@ Criar, Editar, Exluir e ver Reservas dos eventos através do Painel Administrati
 Exibir todos os Eventos na Landing Page,
 e reservar o evento desejado, na Landing Page! 
 
-### Participaram desse Desafio: <a href="https://github.com/elenbrodt">Élen Brodt</a> e <a href="https://github.com/Deivid126">Deivid Gonçalves</a>
+### Participaram desse Projeto: <a href="https://github.com/elenbrodt">Élen Brodt</a> e <a href="https://github.com/Deivid126">Deivid Gonçalves</a>
+<hr>
+
+ ###  <p  align="center"><a href="https://williamnunes49.github.io/Desafio-02-SoundGarden-GamaAcademy/">Clique aqui para fazer sua reserva!</a></p>
 
  
 
@@ -17,4 +20,6 @@ e reservar o evento desejado, na Landing Page!
  
  
  <img src="./img/capa.png" alt="">
+ 
+
 
