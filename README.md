@@ -6,8 +6,10 @@ inaugurada e precisa de um site que exiba os eventos e permita <br> que os clien
 
 ### Funcionalidades: 
 Criar, Editar, Exluir e ver Reservas dos eventos através do Painel Administrativo. <br>
-Exibir todos os Eventos na Landing Page.
-E Reservar o evento desejado, na Landing Page! 
+Exibir todos os Eventos na Landing Page,
+e reservar o evento desejado, na Landing Page! 
+
+### Participaram desse Desafio: <a href="https://github.com/elenbrodt">Élen Brodt</a> e <a href="https://github.com/Deivid126">Deivid Gonçalves</a>
 
  
 
